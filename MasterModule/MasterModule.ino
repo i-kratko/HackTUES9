@@ -33,12 +33,13 @@ void loop() {
    if(sendKA == 0) {
      Serial.println("Sent KA");
      Serial.write(KAMsg);
+     Serial.println();
      sendKA = 5;
    }
    else {
      sendKA--;
    }
-   Serial.println(sendKA);
+   //Serial.println(sendKA);
    waitTillSlaveDead--;
 
 }
