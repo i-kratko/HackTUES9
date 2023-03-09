@@ -1,3 +1,7 @@
+//setup for temperature sensor
+#include <DFRobot_DHT11.h>
+DFRobot_DHT11 DHT;
+#define DHT11_PIN 10
 //Ultrasonic sensor #1
 const int pingPin1 = 7; // Trigger Pin of Ultrasonic Sensor
 const int echoPin1 = 6; // Echo Pin of Ultrasonic Sensor
@@ -6,6 +10,7 @@ const int pingPin2 = 8; // Trigger Pin of Ultrasonic Sensor
 const int echoPin2 = 9; // Echo Pin of Ultrasonic Sensor
 const int ledPin = 13;
 long duration, cm;
+
 void setup() {
    Serial.begin(9600); // Starting Serial Terminal
    pinMode(ledPin, OUTPUT);
@@ -31,9 +36,9 @@ void ultraSonic(int pingPin, int echoPin) {
    pinMode(echoPin, INPUT);
    duration = pulseIn(echoPin, HIGH);
    cm = microsecondsToCentimeters(duration);
-   Serial.print(cm);
-   Serial.print("cm");
-   Serial.println();
+   //Serial.print(cm);
+   //Serial.print("cm");
+   //Serial.println();
 
   if(cm <= 5) {
     digitalWrite(ledPin, HIGH);
