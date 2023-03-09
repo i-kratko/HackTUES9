@@ -6,7 +6,7 @@
 ## **Описание**
 
 ## **Използвани технологии:**
-- [Arduino Development Board](https://store.arduino.cc/collections/boards/products/arduino-uno-rev3)
+- [Arduino Development Board](https://store.arduino.cc/collections/boards/products)
 - [Arduino Language](https://forum.arduino.cc/t/what-is-the-language-you-type-in-the-arduino-ide/45601)
 - [OrCAD](https://www.orcad.com/)
 
@@ -14,3 +14,7 @@
 - **Любомир Станев** - *Втори модул (микроконтролер Arduino Nano + сензори)*
 - **Николай Йорданов** - *Главен модул (микроконтролер Arduino Uno + сензори)*
 - **Христо Люцканов** - *Разработчик на дизайн и схематика + сензори*
+
+## [**Презентация**](https://docs.google.com/presentation/d/1wk0YcOQxHuYobVuawa5fxywiyXQfHUcq/edit#slide=id.p1)
+
+## **Блокова схема**
