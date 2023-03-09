@@ -12,6 +12,14 @@ const int echoPin2 = 9; // Echo Pin of Ultrasonic Sensor
 const int ledPin = 13;
 long duration, cm;
 
+//communication
+int soloMode = 0;
+int sendKA = 5;
+
+char KAMsg = 'a';
+
+int waitTillSlaveDead = 20;
+
 void setup() {
    Serial.begin(9600); // Starting Serial Terminal
    pinMode(ledPin, OUTPUT);
@@ -21,6 +29,23 @@ void loop() {
    ultraSonic(pingPin1, echoPin1);
    ultraSonic(pingPin2, echoPin2);
    temperature();
+   //protocol
+   if(sendKA == 0) {
+     Serial.println("Sent KA");
+     Serial.write(KAMsg);
+     sendKA = 5;
+   }
+   else {
+     sendKA--;
+   }
+   Serial.println(sendKA);
+   //tick down the solo timer
+   /*
+   tick down
+   if no ka and ticked down:
+                      start solo mode
+   */
+
 }
 
 long microsecondsToCentimeters(long microseconds) {
@@ -54,9 +79,9 @@ void ultraSonic(int pingPin, int echoPin) {
 void temperature() {
   if(tempTimer == 0) {
     DHT.read(DHT11_PIN);
-    Serial.print("temp:");
-    Serial.print(DHT.temperature);
-    Serial.println();
+    //Serial.print("temp:");
+    //Serial.print(DHT.temperature);
+    //Serial.println();
     tempTimer = 4;
   }
   else {
