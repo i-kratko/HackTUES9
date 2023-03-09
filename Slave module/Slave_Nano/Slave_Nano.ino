@@ -20,6 +20,14 @@ int previous_condition = 0;
 
 int counter = 0;
 
+//communication
+int soloMode = 0;
+int sendKA = 5;
+
+char KAMSg = 'b';
+
+int waitTillMasterDead = 20;
+
 void setup() {
    Serial.begin(9600);
    pinMode(pirPin, INPUT);
@@ -52,6 +60,19 @@ void loop() {
     digitalWrite(LED, LOW);
     
   }
+
+  if(Serial.available() && waitTillMaster > 0) {
+    if (Serial.read() == 'a') {
+      waitTillMasterDead = 20;
+    }
+  }
+
+  if (waitTillMasterDead == 0) {
+    soloMode = 1;
+    Serial.println("SOLO");
+  }
+
+  waitTillMAsterDead--;
 }
 
 void PIRSensor() {

@@ -39,12 +39,7 @@ void loop() {
      sendKA--;
    }
    Serial.println(sendKA);
-   //tick down the solo timer
-   /*
-   tick down
-   if no ka and ticked down:
-                      start solo mode
-   */
+   waitTillSlaveDead--;
 
 }
 
