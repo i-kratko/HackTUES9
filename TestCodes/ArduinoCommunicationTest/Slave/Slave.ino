@@ -30,7 +30,7 @@ String Q;
       if(Q=="1"){         
         digitalWrite(13,HIGH);               
       }
-      if(Q=="2"){         
+      if(Q=="2"){         git status
         digitalWrite(13,LOW);             
       }
 
