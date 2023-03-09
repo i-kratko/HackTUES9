@@ -38,7 +38,7 @@ void setup() {
 }
 
 void loop() {
-   Serial.println(counter);
+   //Serial.println(counter);
    PIRSensor();
    bool value = digitalRead(sensor);
     if (value == 0) 
@@ -61,18 +61,20 @@ void loop() {
     
   }
 
-  if(Serial.available() && waitTillMaster > 0) {
+  if(Serial.available() && waitTillMasterDead > 0) {
     if (Serial.read() == 'a') {
       waitTillMasterDead = 20;
     }
   }
 
   if (waitTillMasterDead == 0) {
-    soloMode = 1;
+    //soloMode = 1;
     Serial.println("SOLO");
   }
 
-  waitTillMAsterDead--;
+  waitTillMasterDead--;
+  delay(1000);
+  Serial.write('a');
 }
 
 void PIRSensor() {
