@@ -2,6 +2,7 @@
 #include <DFRobot_DHT11.h>
 DFRobot_DHT11 DHT;
 #define DHT11_PIN 10
+int tempTimer = 4;
 //Ultrasonic sensor #1
 const int pingPin1 = 7; // Trigger Pin of Ultrasonic Sensor
 const int echoPin1 = 6; // Echo Pin of Ultrasonic Sensor
@@ -51,9 +52,15 @@ void ultraSonic(int pingPin, int echoPin) {
 }
 
 void temperature() {
-  DHT.read(DHT11_PIN);
-  Serial.print("temp:");
-  Serial.print(DHT.temperature);
-  Serial.println();
-  delay(1000);
+  if(tempTimer == 0) {
+    DHT.read(DHT11_PIN);
+    Serial.print("temp:");
+    Serial.print(DHT.temperature);
+    Serial.println();
+    tempTimer = 4;
+  }
+  else {
+    tempTimer --;
+  }
+  
 }
