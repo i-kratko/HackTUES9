@@ -6,11 +6,11 @@
 ## **Описание**
 
 ## **Използвани технологии:**
-- Arduino Development Board
-- Arduino Language
-- KiCAD
+- [Arduino Development Board](https://store.arduino.cc/collections/boards/products/arduino-uno-rev3)
+- [Arduino Language](https://forum.arduino.cc/t/what-is-the-language-you-type-in-the-arduino-ide/45601)
+- [OrCAD](https://www.orcad.com/)
 
 ## **Автори:**
 - **Любомир Станев** - *Втори модул (микроконтролер Arduino Nano + сензори)*
 - **Николай Йорданов** - *Главен модул (микроконтролер Arduino Uno + сензори)*
-- **Христо Люцканов** - *Разработчик на дизайн и схематика*
+- **Христо Люцканов** - *Разработчик на дизайн и схематика + сензори*
