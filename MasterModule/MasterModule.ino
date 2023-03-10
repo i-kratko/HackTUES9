@@ -15,6 +15,14 @@ const int echoPin2 = 9; // Echo Pin of Ultrasonic Sensor
 const int ledPin = 13;
 long duration, cm;
 
+#define pirPin 2
+int calibrationTime = 5;
+long unsigned int lowIn;
+long unsigned int pause = 5000;
+boolean lockLow = true;
+boolean takeLowTime;
+int PIRValue = 0;
+
 //counter
 int counter = 0;
 //communication
@@ -84,8 +92,9 @@ void loop() {
    //Serial.println(sendKA);
    waitTillSlaveDead--;
    Serial.println(counter);
-   if (counter > 3) {
+   if (counter >= 1) {
     servo.write(90);
+    counter++;
   }
 
 }
@@ -132,4 +141,30 @@ void temperature() {
     tempTimer --;
   }
 
+}
+
+void PIRSensor() {
+   if(digitalRead(pirPin) == HIGH) {
+      if(lockLow) {
+         PIRValue = 1;
+         lockLow = false;
+         counter ++;
+         Serial.write('s');
+         Serial.println("PIRDETECT");
+         delay(100);
+      }
+      takeLowTime = true;
+   }
+   if(digitalRead(pirPin) == LOW) {
+      if(takeLowTime){
+         lowIn = millis();
+         takeLowTime = false;
+      }
+      if(!lockLow && millis() - lowIn > pause) {
+         PIRValue = 0;
+         lockLow = true;
+         delay(50);
+      }
+   }
+   
 }
