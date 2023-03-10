@@ -10,10 +10,17 @@
 
 ## **Описание**
 
+
 ## **Използвани технологии:**
 - [Arduino Development Board](https://store.arduino.cc/collections/boards/products)
 - [Arduino Language](https://forum.arduino.cc/t/what-is-the-language-you-type-in-the-arduino-ide/45601)
 - [OrCAD](https://www.orcad.com/)
+
+## **Блокова схема**
+![image](https://raw.githubusercontent.com/i-kratko/HackTUES9/main/Pictures/BlockScheme.png)
+
+## **Принципна електрическа схема**
+![image](https://github.com/i-kratko/HackTUES9/blob/main/Pictures/ElectricalScheme.png)
 
 ## **Автори:**
 - **Любомир Станев** - *Втори модул (микроконтролер Arduino Nano + сензори)*
@@ -21,9 +28,3 @@
 - **Христо Люцканов** - *Разработчик на дизайн и схематика + сензори*
 
 ## [**Презентация**](https://docs.google.com/presentation/d/1wk0YcOQxHuYobVuawa5fxywiyXQfHUcq/edit#slide=id.p1)
-
-## **Блокова схема**
-![image](https://raw.githubusercontent.com/i-kratko/HackTUES9/main/Pictures/BlockScheme.png)
-
-## **Принципна електрическа схема**
-![image](https://github.com/i-kratko/HackTUES9/blob/main/Pictures/ElectricalScheme.png)
