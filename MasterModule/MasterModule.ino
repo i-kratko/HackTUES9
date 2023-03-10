@@ -25,14 +25,30 @@ char KAMsg = 'a';
 
 int waitTillSlaveDead = 10000;
 
+//btn
+int lastState = LOW; // the previous state from the input pin
+int currentState;
+
 void setup() {
    Serial.begin(9600); // Starting Serial Terminal
    pinMode(ledPin, OUTPUT);
+   pinMode(12, INPUT_PULLUP);
    servo.attach(11); //trust
    servo.write(0);
 }
 
 void loop() {
+  int buttonState = digitalRead(12);
+  currentState = digitalRead(12);
+
+  if(lastState == HIGH && currentState == LOW) {
+    counter++;
+    Serial.println("BTN");
+  }
+
+  // save the last state
+  lastState = currentState;
+  //sensors
    ultraSonic(pingPin1, echoPin1);
    ultraSonic(pingPin2, echoPin2);
    temperature();
