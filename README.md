@@ -26,3 +26,4 @@
 ![image](https://raw.githubusercontent.com/i-kratko/HackTUES9/main/Pictures/BlockScheme.png)
 
 ## **Принципна електрическа схема**
+![image](https://github.com/i-kratko/HackTUES9/blob/main/Pictures/ElectricalScheme.png)
