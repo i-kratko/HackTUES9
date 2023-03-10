@@ -24,7 +24,7 @@ int counter = 0;
 int soloMode = 0;
 int sendKA = 5;
 
-char KAMSg = 'b';
+char KAMsg = 'b';
 
 int waitTillMasterDead = 20;
 
@@ -61,20 +61,31 @@ void loop() {
     
   }
 
-  if(Serial.available() && waitTillMasterDead > 0) {
+  while(Serial.available() > 0 && waitTillMasterDead > 0) {
     if (Serial.read() == 'a') {
       waitTillMasterDead = 20;
+      Serial.println("got msg");
     }
   }
+  
+  if(sendKA == 0) {
+      Serial.println("Sent KA");
+      Serial.write(KAMsg);
+      Serial.println();
+     sendKA = 5;
+    }
+    else {
+     sendKA--;
+     }
 
-  if (waitTillMasterDead == 0) {
+  //if (waitTillMasterDead == 0) {
     //soloMode = 1;
-    Serial.println("SOLO");
-  }
+   // Serial.println("SOLO");
+  //}
 
-  waitTillMasterDead--;
+  //waitTillMasterDead--;
   delay(1000);
-  Serial.write('a');
+  //Serial.write('a');
 }
 
 void PIRSensor() {

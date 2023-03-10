@@ -12,13 +12,15 @@ const int echoPin2 = 9; // Echo Pin of Ultrasonic Sensor
 const int ledPin = 13;
 long duration, cm;
 
+//counter
+
 //communication
 int soloMode = 0;
 int sendKA = 5;
 
 char KAMsg = 'a';
 
-int waitTillSlaveDead = 20;
+int waitTillSlaveDead = 60;
 
 void setup() {
    Serial.begin(9600); // Starting Serial Terminal
@@ -30,15 +32,29 @@ void loop() {
    ultraSonic(pingPin2, echoPin2);
    temperature();
    //protocol
-   if(sendKA == 0) {
-     Serial.println("Sent KA");
-     Serial.write(KAMsg);
-     Serial.println();
+   if (waitTillSlaveDead != 0 && soloMode == 0) {
+     if(sendKA == 0) {
+      //Serial.println("Sent KA");
+      Serial.write(KAMsg);
+      Serial.println();
      sendKA = 5;
-   }
-   else {
+    }
+    else {
      sendKA--;
+     }
    }
+   
+  while(Serial.available() > 0 && waitTillSlaveDead > 0) {
+    if (Serial.read() == 'b') {
+      waitTillSlaveDead = 20;
+      Serial.println("got msg");
+    }
+  }
+
+   if (waitTillSlaveDead <= 0) {
+     soloMode = 1;
+   }
+
    //Serial.println(sendKA);
    waitTillSlaveDead--;
 
