@@ -41,10 +41,10 @@ void loop() {
   int buttonState = digitalRead(12);
   currentState = digitalRead(12);
 
-  if(lastState == HIGH && currentState == LOW) {
-    counter++;
-    Serial.println("BTN");
-  }
+  //if(lastState == HIGH && currentState == LOW) {
+    //counter++;
+    //Serial.println("BTN");
+  //}
 
   // save the last state
   lastState = currentState;
@@ -73,7 +73,6 @@ void loop() {
     else if (Serial.read() == 's') {
       counter++;
       Serial.println(counter);
-      break;
     }
   }
 
@@ -84,6 +83,10 @@ void loop() {
 
    //Serial.println(sendKA);
    waitTillSlaveDead--;
+   Serial.println(counter);
+   if (counter > 3) {
+    servo.write(90);
+  }
 
 }
 
@@ -127,10 +130,6 @@ void temperature() {
   }
   else {
     tempTimer --;
-  }
-  
-  if (counter > 5) {
-    servo.write(90);
   }
 
 }

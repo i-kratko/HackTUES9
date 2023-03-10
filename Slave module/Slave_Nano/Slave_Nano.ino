@@ -42,7 +42,7 @@ void loop() {
    //Serial.println(counter);
    PIRSensor();
    bool value = digitalRead(sensor);
-    if (value == 1) 
+    if (value == 0) 
     {
       counter++;
       Serial.println("laserdetect");
@@ -54,6 +54,7 @@ void loop() {
    if (previous_condition != present_condition) 
     {
       counter ++;
+      Serial.write('s');
       delay(1000);
     }
     if (counter >= 10) {
@@ -96,8 +97,9 @@ void PIRSensor() {
          PIRValue = 1;
          lockLow = false;
          counter ++;
+         Serial.write('s');
          Serial.println("PIRDETECT");
-         delay(1000);
+         delay(100);
       }
       takeLowTime = true;
    }
