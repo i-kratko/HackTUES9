@@ -1,3 +1,6 @@
+//servo setup
+#include <Servo.h>
+Servo servo;
 //setup for temperature sensor
 #include <DFRobot_DHT11.h>
 DFRobot_DHT11 DHT;
@@ -13,18 +16,20 @@ const int ledPin = 13;
 long duration, cm;
 
 //counter
-
+int counter = 0;
 //communication
 int soloMode = 0;
 int sendKA = 5;
 
 char KAMsg = 'a';
 
-int waitTillSlaveDead = 60;
+int waitTillSlaveDead = 10000;
 
 void setup() {
    Serial.begin(9600); // Starting Serial Terminal
    pinMode(ledPin, OUTPUT);
+   servo.attach(11); //trust
+   servo.write(0);
 }
 
 void loop() {
@@ -46,13 +51,19 @@ void loop() {
    
   while(Serial.available() > 0 && waitTillSlaveDead > 0) {
     if (Serial.read() == 'b') {
-      waitTillSlaveDead = 20;
+      waitTillSlaveDead = 10000;
       Serial.println("got msg");
+    }
+    else if (Serial.read() == 's') {
+      counter++;
+      Serial.println(counter);
+      break;
     }
   }
 
    if (waitTillSlaveDead <= 0) {
      soloMode = 1;
+     Serial.println("Slave dead (men im dead)");
    }
 
    //Serial.println(sendKA);
@@ -79,7 +90,9 @@ void ultraSonic(int pingPin, int echoPin) {
    //Serial.println();
 
   if(cm <= 5) {
-    digitalWrite(ledPin, HIGH);
+    counter++;
+    Serial.println("US DETECT");
+    delay(1000);
   }
   else {
     digitalWrite(ledPin, LOW);
@@ -100,4 +113,8 @@ void temperature() {
     tempTimer --;
   }
   
+  if (counter > 5) {
+    servo.write(90);
+  }
+
 }

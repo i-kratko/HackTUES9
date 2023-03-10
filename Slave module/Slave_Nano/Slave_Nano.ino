@@ -18,6 +18,7 @@ int PIRValue = 0;
 int present_condition = 0;
 int previous_condition = 0;
 
+//counter 
 int counter = 0;
 
 //communication
@@ -26,7 +27,7 @@ int sendKA = 5;
 
 char KAMsg = 'b';
 
-int waitTillMasterDead = 20;
+int waitTillMasterDead = 10000;
 
 void setup() {
    Serial.begin(9600);
@@ -41,9 +42,10 @@ void loop() {
    //Serial.println(counter);
    PIRSensor();
    bool value = digitalRead(sensor);
-    if (value == 0) 
+    if (value == 1) 
     {
-      counter ++;
+      counter++;
+      Serial.println("laserdetect");
       delay(1000);
     }
    
@@ -63,13 +65,13 @@ void loop() {
 
   while(Serial.available() > 0 && waitTillMasterDead > 0) {
     if (Serial.read() == 'a') {
-      waitTillMasterDead = 20;
+      waitTillMasterDead = 10000;
       Serial.println("got msg");
     }
   }
   
   if(sendKA == 0) {
-      Serial.println("Sent KA");
+      //Serial.println("Sent KA");
       Serial.write(KAMsg);
       Serial.println();
      sendKA = 5;
@@ -94,6 +96,7 @@ void PIRSensor() {
          PIRValue = 1;
          lockLow = false;
          counter ++;
+         Serial.println("PIRDETECT");
          delay(1000);
       }
       takeLowTime = true;
